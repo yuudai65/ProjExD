@@ -10,18 +10,20 @@ def Key_up(event):
     key = ""
 
 def main_proc():
-    global cx, cy, key
+    global cx, cy, key, mx, my, key
     if key == "Up":
-        cy -= 20
+        my -= 1
 
     elif key == "Down":
-        cy += 20
+        my += 1
 
     elif key == "Right":
-        cx += 20
+        mx += 1
 
     elif key == "Left":
-        cx -= 20
+        mx -= 1
+    cx = 100 * mx + 50
+    cy = 100 * my + 50
 
     canvas.coords("tori", cx, cy)
     root.after(100, main_proc)
@@ -35,7 +37,8 @@ if __name__ == "__main__":
     canvas.pack()
 
     tori = tk.PhotoImage(file = "fig/8.png")
-    cx, cy = 300, 400
+    mx, my = 1,1
+    cx, cy = 100*mx+50, 100*my+50
     key = ""
     root.bind("<KeyPress>", Key_down)
     root.bind("<KeyRelease>", Key_up)
