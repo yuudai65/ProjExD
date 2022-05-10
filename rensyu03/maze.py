@@ -1,5 +1,5 @@
 import tkinter as tk
-from xmlrpc.server import CGIXMLRPCRequestHandler
+import maze_maker as mm
 
 def Key_down(event):
     global key
@@ -36,9 +36,11 @@ if __name__ == "__main__":
 
     tori = tk.PhotoImage(file = "fig/8.png")
     cx, cy = 300, 400
-    canvas.create_image(cx, cy, image = tori, tag = "tori")
     key = ""
     root.bind("<KeyPress>", Key_down)
     root.bind("<KeyRelease>", Key_up)
+    maze_bg = mm.make_maze(15, 9)
+    mm.show_maze(canvas, maze_bg)
+    canvas.create_image(cx, cy, image = tori, tag = "tori")
     root.after(100, main_proc)
     root.mainloop()
