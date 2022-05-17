@@ -5,10 +5,11 @@ from tkinter import messagebox
 import tkinter as tk
 
 key_delta = {
-             pg.K_UP:[0, -1],
-             pg.K_DOWN:[0, +1],
-             pg.K_RIGHT:[+1, 0],
-             pg.K_LEFT:[-1, 0],}
+             pg.K_UP:[0, -3],
+             pg.K_DOWN:[0, +3],
+             pg.K_RIGHT:[+3, 0],
+             pg.K_LEFT:[-3, 0],}
+
 
              
 def main():
@@ -35,7 +36,7 @@ def main():
     bomb_rect.centerx = random.randint(0, sc_rect.width)
     bomb_rect.centery = random.randint(0, sc_rect.height)
     screen.blit(bomb, bomb_rect) #爆弾用のsurfaceを画面用surfaceに張り付ける
-    vx, vy = +1, +1
+    vx, vy = +5, +5
 
     while True:
         #練習2
@@ -68,7 +69,7 @@ def main():
         if tori_rect.colliderect(bomb_rect):#こうかとん用のrectが爆弾用のrectと衝突したらreturn
             kesu = tk.Tk()#rootウィンドウを消すための作業
             kesu.withdraw()#ここでrootウィンドウを消してる
-            messagebox.showerror('死亡', '君は命を奪った')
+            messagebox.showerror('死亡', f'君は命を奪った{clock}')
             return 
 
 
@@ -90,8 +91,8 @@ if __name__ == "__main__":
     pg.init()
     kesu = tk.Tk()#rootウィンドウを消すための作業
     kesu.withdraw()#ここでrootウィンドウを消してる
-    messagebox.showinfo('覚悟', '君は命を奪う覚悟はあるか？')
-
+    messagebox.showinfo('覚悟', '命を奪う覚悟はあるか？') #ゲームが始まる前に出てくる
+    clock = pg.time.Clock()
     main()
     pg.quit()
     sys.exit()
