@@ -3,31 +3,10 @@ import maze_maker as mm
 import random
 import tkinter.messagebox as tkm
 
-def pic():
+def pic():#ランダムでこうかとんの画像の名前を返す
     a = random.randint(0, 10)
-    if a == 0:
-        return "fig/0.png"
-    elif a == 1:
-        return "fig/1.png"
-
-    elif a == 2:
-        return "fig/2.png"
-
-    elif a == 3:
-        return "fig/3.png"
-    elif a == 4:
-        return "fig/4.png"
-    elif a == 5:
-        return "fig/5.png"
-    elif a == 6:
-        return "fig/6.png"
-    elif a == 7:
-        return "fig/7.png"
-    elif a == 8:
-        return "fig/8.png"
-
-    elif a == 9:
-        return "fig/9.png"    
+    img_lst = [(f"fig/{i}.png") for i in range(10)] #内包表記  
+    return img_lst[a]
 
         
 
@@ -45,6 +24,7 @@ def main_proc():
     cy = 100 * my + 50
     if key == "Up" and maze_bg[my-1][mx] == 0:
         my -= 1
+        
 
     if key == "Down" and maze_bg[my+1][mx] == 0:
         my += 1
@@ -81,6 +61,7 @@ def count_up():
 
 
 
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("迷えるコウカトン")
@@ -108,6 +89,6 @@ if __name__ == "__main__":
     root.bind("<KeyPress>", key_down) 
     label.pack()     #何かのキーが押されたらkey_down関数が実行される
     root.mainloop()
-    root.mainloop()
+   
 
     

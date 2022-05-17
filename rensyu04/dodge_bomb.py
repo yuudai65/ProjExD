@@ -1,6 +1,8 @@
 import pygame as pg
 import sys
 import random
+from tkinter import messagebox
+import tkinter as tk
 
 key_delta = {
              pg.K_UP:[0, -1],
@@ -9,7 +11,6 @@ key_delta = {
              pg.K_LEFT:[-1, 0],}
 
              
-
 def main():
     clock = pg.time.Clock()
     #練習1
@@ -63,6 +64,15 @@ def main():
         vy *= y #縦方向に画面外なら縦方向速度の符号反転
 
 
+        #練習8
+        if tori_rect.colliderect(bomb_rect):#こうかとん用のrectが爆弾用のrectと衝突したらreturn
+            kesu = tk.Tk()#rootウィンドウを消すための作業
+            kesu.withdraw()#ここでrootウィンドウを消してる
+            messagebox.showerror('死亡', '君は命を奪った')
+            return 
+
+
+
         pg.display.update()  #画面を更新
         clock.tick(1000)
 
@@ -78,6 +88,10 @@ def check_bound(sc_r, obj_r): #画面用rect, こうかとんか爆弾用rect
 
 if __name__ == "__main__":
     pg.init()
+    kesu = tk.Tk()#rootウィンドウを消すための作業
+    kesu.withdraw()#ここでrootウィンドウを消してる
+    messagebox.showinfo('覚悟', '君は命を奪う覚悟はあるか？')
+
     main()
     pg.quit()
     sys.exit()
