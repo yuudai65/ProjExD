@@ -69,7 +69,7 @@ def main():
         if tori_rect.colliderect(bomb_rect):#こうかとん用のrectが爆弾用のrectと衝突したらreturn
             kesu = tk.Tk()#rootウィンドウを消すための作業
             kesu.withdraw()#ここでrootウィンドウを消してる
-            messagebox.showerror('死亡', f'君は命を奪った{clock}')
+            messagebox.showerror('死亡', f'君は{keika}ミリ秒生き残った')
             return 
 
 
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     kesu = tk.Tk()#rootウィンドウを消すための作業
     kesu.withdraw()#ここでrootウィンドウを消してる
     messagebox.showinfo('覚悟', '命を奪う覚悟はあるか？') #ゲームが始まる前に出てくる
-    clock = pg.time.Clock()#fpsを取得
+    keika = pg.time.get_ticks()#生き残った時間を取得
     main()
     pg.quit()
     sys.exit()
