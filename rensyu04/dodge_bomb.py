@@ -8,7 +8,7 @@ key_delta = {
              pg.K_UP:[0, -3],
              pg.K_DOWN:[0, +3],
              pg.K_RIGHT:[+3, 0],
-             pg.K_LEFT:[-3, 0],}
+             pg.K_LEFT:[-3, 0],} #こうかとんの移動先と移動速度(数字の大きさ)
 
 
              
@@ -36,7 +36,7 @@ def main():
     bomb_rect.centerx = random.randint(0, sc_rect.width)
     bomb_rect.centery = random.randint(0, sc_rect.height)
     screen.blit(bomb, bomb_rect) #爆弾用のsurfaceを画面用surfaceに張り付ける
-    vx, vy = +5, +5
+    vx, vy = +5, +5 #爆弾の速さ
 
     while True:
         #練習2
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     kesu = tk.Tk()#rootウィンドウを消すための作業
     kesu.withdraw()#ここでrootウィンドウを消してる
     messagebox.showinfo('覚悟', '命を奪う覚悟はあるか？') #ゲームが始まる前に出てくる
-    clock = pg.time.Clock()
+    clock = pg.time.Clock()#fpsを取得
     main()
     pg.quit()
     sys.exit()
