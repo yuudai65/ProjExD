@@ -4,6 +4,8 @@ import random
 from tkinter import messagebox
 import tkinter as tk
 
+
+
 key_delta = {
              pg.K_UP:[0, -3],
              pg.K_DOWN:[0, +3],
@@ -13,8 +15,8 @@ key_delta = {
 
              
 def main():
-    clock = pg.time.Clock()
     #練習1
+    clock = pg.time.Clock()
     pg.display.set_caption("逃げろ!こうかとん")
     screen = pg.display.set_mode((1600, 900)) #画面用surface
     sc_rect = screen.get_rect()               #画面用rect
@@ -69,7 +71,8 @@ def main():
         if tori_rect.colliderect(bomb_rect):#こうかとん用のrectが爆弾用のrectと衝突したらreturn
             kesu = tk.Tk()#rootウィンドウを消すための作業
             kesu.withdraw()#ここでrootウィンドウを消してる
-            messagebox.showerror('死亡', f'君は{keika}ミリ秒生き残った')
+            pg.mixer.music.stop()#BGMの停止
+            messagebox.showerror('死亡', f'君のスコアは{keika}')
             return 
 
 
@@ -86,6 +89,11 @@ def check_bound(sc_r, obj_r): #画面用rect, こうかとんか爆弾用rect
         y = -1
     return x, y
 
+def BGM(): #BGMの再生
+    pg.mixer.music.load("BGM/08-ラフメイカー.mp3")
+    pg.mixer.music.play(loops=-1, start=0.0)
+
+
 
 if __name__ == "__main__":
     pg.init()
@@ -93,6 +101,7 @@ if __name__ == "__main__":
     kesu.withdraw()#ここでrootウィンドウを消してる
     messagebox.showinfo('覚悟', '命を奪う覚悟はあるか？') #ゲームが始まる前に出てくる
     keika = pg.time.get_ticks()#生き残った時間を取得
+    BGM()                      #BGMの再生
     main()
     pg.quit()
     sys.exit()
