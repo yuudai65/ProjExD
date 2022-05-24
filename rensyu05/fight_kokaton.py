@@ -1,6 +1,10 @@
 import pygame as pg
 import sys
 import random
+from tkinter import messagebox
+import tkinter as tk
+
+
 
 class Screen:
     def __init__(self, fn, wh, title):
@@ -59,7 +63,10 @@ class Bomb(pg.sprite.Sprite):
         self.vy *= y
 
 
-
+def pic():#ランダムでこうかとんの画像の名前を返す
+    a = random.randint(0, 10)
+    img_lst = [(f"fig/{i}.png") for i in range(10)] #内包表記  
+    return img_lst[a]
 
 
 def main():
@@ -76,10 +83,10 @@ def main():
     screen.disp.blit(screen.image, (0,0))           # 背景画像用Surfaceを画面用Surfaceに貼り付ける
 
     # 練習3
-    tori = Bird("fig/3.png", 2, (900, 400))
+    tori = Bird(pic(), 2, (900, 400))
     screen.disp.blit(tori.image, tori.rect)               # こうかとん画像用のSurfaceを画面用Surfaceに貼り付ける
     tori = pg.sprite.Group()
-    tori.add(Bird("fig/3.png", 2, (900, 400)))
+    tori.add(Bird(pic(), 2, (900, 400)))
 
     # 練習5
     #bomb = Bomb((255, 0, 0), 10, (+2, +2), screen)
@@ -108,6 +115,10 @@ def main():
 
         # 練習8
         if len(pg.sprite.groupcollide(tori, bombs, False, False)) != 0:
+            kesu = tk.Tk()#rootウィンドウを消すための作業
+            kesu.withdraw()#ここでrootウィンドウを消してる
+            pg.mixer.music.stop()#BGMの停止
+            messagebox.showerror('死亡', f'君のスコアは{keika}点')
             return
         # こうかとん用のRectが爆弾用のRectと衝突していたらreturn
         #if pg.sprite.collide_rect(tori, bomb): return
@@ -124,8 +135,18 @@ def check_bound(sc_r, obj_r): # 画面用Rect, ｛こうかとん，爆弾｝Rec
     return x, y
 
 
+def BGM(): #BGMの再生
+    pg.mixer.music.load("BGM/08-ラフメイカー.mp3") #曲のロード
+    pg.mixer.music.play(loops=-1, start=0.0)#ロードした音楽の再生
+
+
 if __name__ == "__main__":
     pg.init() 
+    kesu = tk.Tk()#rootウィンドウを消すための作業
+    kesu.withdraw()#ここでrootウィンドウを消してる
+    messagebox.showinfo('覚悟', '命を奪う覚悟はあるか？')
+    keika = pg.time.get_ticks()
+    BGM()    #音楽の再生用
     main()
     pg.quit()
     sys.exit()
