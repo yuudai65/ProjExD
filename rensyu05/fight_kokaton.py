@@ -30,7 +30,7 @@ class Bird(pg.sprite.Sprite):
              pg.K_LEFT : [-1, 0],
              pg.K_RIGHT: [+1, 0],
              }
-             
+
     def __init__(self, fn, r, xy):
         #fn:画像用　r:拡大率　xy:こうかとんの初期位置
         super().__init__() #基底クラスの初期化
@@ -131,7 +131,7 @@ def main():
             kesu = tk.Tk()#rootウィンドウを消すための作業
             kesu.withdraw()#ここでrootウィンドウを消してる
             pg.mixer.music.stop()#BGMの停止
-            messagebox.showerror('死亡', f'君のスコアは{keika}点')
+            messagebox.showerror('死亡', f'君のスコアは{keika}点')#こうかとん死亡後にスコアの表示
             return
         # こうかとん用のRectが爆弾用のRectと衝突していたらreturn
         #if pg.sprite.collide_rect(tori, bomb): return
@@ -157,8 +157,8 @@ if __name__ == "__main__":
     pg.init() 
     kesu = tk.Tk()#rootウィンドウを消すための作業
     kesu.withdraw()#ここでrootウィンドウを消してる
-    messagebox.showinfo('覚悟', '命を奪う覚悟はあるか？')
-    keika = pg.time.get_ticks()
+    messagebox.showinfo('覚悟', '命を奪う覚悟はあるか？')#ゲーム開始前にポップアップを表示
+    keika = pg.time.get_ticks() #生き残った時間を取得（ミリ秒）
     BGM()    #音楽の再生用
     main()
     pg.quit()
