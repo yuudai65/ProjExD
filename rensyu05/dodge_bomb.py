@@ -82,7 +82,9 @@ def main():
     # 練習5
     bomb = Bomb((255, 0, 0), 10, (+2, +2), screen)
     screen.disp.blit(bomb.image, bomb.rect)                   # 爆弾用のSurfaceを画面用Surfaceに貼り付ける
-    vx, vy = +2, +2
+    bombs = pg.sprite.Group()
+    for _ in range(5):#使わないのでアンダースコアを使っている　爆弾のインスタンスを五個生成
+        bombs.add(Bomb((255, 0, 0), 10, (+2, +2), screen))
 
     while True:
         # 練習2
@@ -94,10 +96,12 @@ def main():
         tori.update(screen)
         screen.disp.blit(tori.image, tori.rect)
         #screen.blit(tori_img, tori_rect)
+        #tori.draw(screen.disp)#とりはグループクラスのインスタンスではないのでdrawは使えない
 
         # 練習6
-        bomb.update(screen)
-        screen.disp.blit(bomb.image, bomb.rect)
+        bombs.update(screen)
+        #screen.disp.blit(bomb.image, bomb.rect)
+        bombs.draw(screen.disp) #bombsはグループクラスのインスタンス
 
 
         # 練習8
