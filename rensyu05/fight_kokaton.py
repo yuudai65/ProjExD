@@ -30,6 +30,7 @@ class Bird(pg.sprite.Sprite):
              pg.K_LEFT : [-1, 0],
              pg.K_RIGHT: [+1, 0],
              }
+             
     def __init__(self, fn, r, xy):
         #fn:画像用　r:拡大率　xy:こうかとんの初期位置
         super().__init__() #基底クラスの初期化
