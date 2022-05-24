@@ -5,6 +5,14 @@ from tkinter import messagebox
 import tkinter as tk
 
 
+class Gameover:
+    def __init__(self, fn, wh, r):
+        self.width, self.height = wh
+        self.image = pg.image.load(fn)#ゲームオーバー画像のロード
+        self.disp = pg.display.set_mode((self.width, self.height)) # Surface
+        self.image = pg.transform.rotozoom(self.image, 0, r) #ゲームオーバー画像が小さいので大きくする用
+        self.rect = self.disp.get_rect()#ゲームオーバー画像の形
+
 
 class Screen:
     def __init__(self, fn, wh, title):
@@ -64,7 +72,7 @@ class Bomb(pg.sprite.Sprite):
 
 
 def pic():#ランダムでこうかとんの画像の名前を返す
-    a = random.randint(0, 10)
+    a = random.randint(0, 9)
     img_lst = [(f"fig/{i}.png") for i in range(10)] #内包表記  
     return img_lst[a]
 
@@ -115,6 +123,10 @@ def main():
 
         # 練習8
         if len(pg.sprite.groupcollide(tori, bombs, False, False)) != 0:
+            gameover = Gameover("fig/ゲームオーバー.jpeg", (1600, 900), 3.3) #ゲームオーバークラスの呼び出し
+            screen.disp.blit(gameover.image, gameover.rect) #こうかとん死亡時にゲーム画面にゲームオーバー画像を表示させる
+            pg.display.update()     # 画面の更新
+            clock.tick(0.5)
             kesu = tk.Tk()#rootウィンドウを消すための作業
             kesu.withdraw()#ここでrootウィンドウを消してる
             pg.mixer.music.stop()#BGMの停止
