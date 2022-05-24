@@ -78,10 +78,12 @@ def main():
     # 練習3
     tori = Bird("fig/3.png", 2, (900, 400))
     screen.disp.blit(tori.image, tori.rect)               # こうかとん画像用のSurfaceを画面用Surfaceに貼り付ける
+    tori = pg.sprite.Group()
+    tori.add(Bird("fig/3.png", 2, (900, 400)))
 
     # 練習5
-    bomb = Bomb((255, 0, 0), 10, (+2, +2), screen)
-    screen.disp.blit(bomb.image, bomb.rect)                   # 爆弾用のSurfaceを画面用Surfaceに貼り付ける
+    #bomb = Bomb((255, 0, 0), 10, (+2, +2), screen)
+    #screen.disp.blit(bomb.image, bomb.rect)                   # 爆弾用のSurfaceを画面用Surfaceに貼り付ける
     bombs = pg.sprite.Group()
     for _ in range(5):#使わないのでアンダースコアを使っている　爆弾のインスタンスを五個生成
         bombs.add(Bomb((255, 0, 0), 10, (+2, +2), screen))
@@ -94,9 +96,9 @@ def main():
 
         # 練習4
         tori.update(screen)
-        screen.disp.blit(tori.image, tori.rect)
+        #screen.disp.blit(tori.image, tori.rect)
         #screen.blit(tori_img, tori_rect)
-        #tori.draw(screen.disp)#とりはグループクラスのインスタンスではないのでdrawは使えない
+        tori.draw(screen.disp)
 
         # 練習6
         bombs.update(screen)
@@ -105,8 +107,10 @@ def main():
 
 
         # 練習8
+        if len(pg.sprite.groupcollide(tori, bombs, False, False)) != 0:
+            return
         # こうかとん用のRectが爆弾用のRectと衝突していたらreturn
-        if pg.sprite.collide_rect(tori, bomb): return
+        #if pg.sprite.collide_rect(tori, bomb): return
         #collide_rect(spriteクラスのインスタンス,spriteクラスのインスタンス)
         pg.display.update()  # 画面の更新
         clock.tick(1000) 
