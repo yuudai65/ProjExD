@@ -101,8 +101,9 @@ def main():
 
 
         # 練習8
-        if tori.rect.colliderect(bomb.rect): return        # こうかとん用のRectが爆弾用のRectと衝突していたらreturn
-
+        # こうかとん用のRectが爆弾用のRectと衝突していたらreturn
+        if pg.sprite.collide_rect(tori, bomb): return
+        #collide_rect(spriteクラスのインスタンス,spriteクラスのインスタンス)
         pg.display.update()  # 画面の更新
         clock.tick(1000) 
     
