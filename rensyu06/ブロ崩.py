@@ -400,7 +400,7 @@ class Breakout:
 
     def createWidgets(self):
         '''必要なウィジェットを作成'''
-        self.image =  tk.PhotoImage(file = "b.gif", master = app)
+        self.image =  tk.PhotoImage(file = "b.gif", master = app) #背景画像の追加
         # キャンバスを作成
         self.canvas = tk.Canvas(
             self.master,
@@ -482,6 +482,7 @@ class Breakout:
                 fill=COLOR_BLOCK
             )
             self.figs[block] = figure
+        self.canvas.create_text(50, 50, text = "座標左下", anchor = "sw", font=("HG丸ｺﾞｼｯｸM-PRO",24), fill = "red")
 
     def updateFigures(self):
         '''新しい座標に図形を移動'''
