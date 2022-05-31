@@ -6,7 +6,7 @@ from PIL import ImageTk
 
 NUM_H_BLOCK = 10  # ブロッックの数（横方向)
 NUM_V_BLOCK = 10  # ブロックの数（縦方向）
-WIDTH_BLOCK = 40  # ブロックの幅
+WIDTH_BLOCK = 100  # ブロックの幅
 HEIGHT_BLOCK = 20  # ブロックの高さ
 COLOR_BLOCK = "blue"  # ブロックの色
 
@@ -400,7 +400,7 @@ class Breakout:
 
     def createWidgets(self):
         '''必要なウィジェットを作成'''
-        self.imgage = ImageTk.PhotoImage(file = "fig/back.jpg")
+        self.image =  tk.PhotoImage(file = "b.gif", master = app)
         # キャンバスを作成
         self.canvas = tk.Canvas(
             self.master,
@@ -413,7 +413,7 @@ class Breakout:
         self.canvas.create_image(
             self.width/2,
             self.height/2,
-            image = self.imgage
+            image = self.image
         )
 
     def createObjects(self):
