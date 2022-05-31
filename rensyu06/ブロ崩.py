@@ -1,8 +1,8 @@
-import tkinter
+import tkinter as tk
 import math
 import pygame as pg
 from tkinter import messagebox
-
+from PIL import ImageTk
 
 NUM_H_BLOCK = 10  # ブロッックの数（横方向)
 NUM_V_BLOCK = 10  # ブロックの数（縦方向）
@@ -400,16 +400,21 @@ class Breakout:
 
     def createWidgets(self):
         '''必要なウィジェットを作成'''
-
+        self.imgage = ImageTk.PhotoImage(file = "fig/back.jpg")
         # キャンバスを作成
-        self.canvas = tkinter.Canvas(
+        self.canvas = tk.Canvas(
             self.master,
             width=self.width,
             height=self.height,
             highlightthickness=0,
-            bg="gray"
         )
         self.canvas.pack(padx=10, pady=10)
+        
+        self.canvas.create_image(
+            self.width/2,
+            self.height/2,
+            image = self.imgage
+        )
 
     def createObjects(self):
         '''ゲームに登場するオブジェクトを作成'''
@@ -498,11 +503,11 @@ def BGM(): #BGMの再生
     pg.mixer.music.play(loops=-1, start=0.0)#ロードした音楽の再生
 
 pg.init()#pygameを初期化
-kesu = tkinter.Tk()#rootウィンドウを消すための作業
+kesu = tk.Tk()#rootウィンドウを消すための作業
 kesu.withdraw()#ここでrootウィンドウを消してる
 messagebox.showinfo('ブロック崩し', 'エンターを押すとはじまるかも')#ゲーム開始前にポップアップを表示
 keika = pg.time.get_ticks()
 BGM()
-app = tkinter.Tk()
+app = tk.Tk()
 Breakout(app)
 app.mainloop()
