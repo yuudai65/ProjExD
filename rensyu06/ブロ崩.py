@@ -482,8 +482,8 @@ class Breakout:
                 fill=COLOR_BLOCK
             )
             self.figs[block] = figure
-        self.canvas.create_text(50, 50, text = "座標左下", anchor = "sw", font=("HG丸ｺﾞｼｯｸM-PRO",24), fill = "red")
-
+        self.canvas.create_text(50, 50, text = "頑張って！", anchor = "sw", font=("HG丸ｺﾞｼｯｸM-PRO",24), fill = "red")
+        #ここで文章を貼り付けてる
     def updateFigures(self):
         '''新しい座標に図形を移動'''
 
@@ -506,8 +506,8 @@ def BGM(): #BGMの再生
 pg.init()#pygameを初期化
 kesu = tk.Tk()#rootウィンドウを消すための作業
 kesu.withdraw()#ここでrootウィンドウを消してる
-messagebox.showinfo('ブロック崩し', 'エンターを押すとはじまるかも')#ゲーム開始前にポップアップを表示
-keika = pg.time.get_ticks()
+messagebox.showinfo('ブロック崩し', '左クリックでポーズ,ctrl+cで終了')#ゲーム開始前にポップアップを表示
+keika = pg.time.get_ticks() #経過時間の取得
 BGM()
 app = tk.Tk()
 Breakout(app)
