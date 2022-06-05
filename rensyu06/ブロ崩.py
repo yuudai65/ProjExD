@@ -6,8 +6,8 @@ from PIL import ImageTk
 
 NUM_H_BLOCK = 10  # ブロッックの数（横方向)
 NUM_V_BLOCK = 10  # ブロックの数（縦方向）
-WIDTH_BLOCK = 100  # ブロックの幅
-HEIGHT_BLOCK = 20  # ブロックの高さ
+WIDTH_BLOCK = 160  # ブロックの幅
+HEIGHT_BLOCK = 30  # ブロックの高さ
 COLOR_BLOCK = "blue"  # ブロックの色
 
 HEIGHT_SPACE = 300  # 縦方向の空きスペース
